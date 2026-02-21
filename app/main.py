@@ -1,15 +1,12 @@
 def copy_file(command: str) -> None:
-    if not command.lower().startswith("cp"):
+    command_ls = command.split()
+
+    if len(command_ls) == 3 and command_ls[0] == "cp":
+        file_1 = command_ls[1]
+        file_2 = command_ls[2]
+    else:
         return
-    files = [
-        file
-        for file in command.split()
-        if file.lower().endswith(".txt")
-    ]
-    if len(files) < 2:
-        return
-    file_1 = files[0]
-    file_2 = files[1]
+
     if file_1 != file_2:
         try:
             with open(file_1, "r") as f:
